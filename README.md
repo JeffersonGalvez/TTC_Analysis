@@ -1,4 +1,4 @@
-# TTC_Analysis
+# TTC_Delays_Analysis_2022
 A personal data analytics project, heavily utlizing MySQL for data processing, cleaning and exploration
 
 Project objectives:
