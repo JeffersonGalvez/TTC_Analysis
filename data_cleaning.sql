@@ -1,11 +1,11 @@
 -- Data Processing, Cleaning and Validation
 
--- 3 tables imported using Data Import Wizard on MySQL workbench 
+-- 4 tables imported using Data Import Wizard on MySQL workbench 
 -- data scource: https://open.toronto.ca/catalogue/?topics=Transportation&owner_division=Toronto%20Transit%20Commission
 
 -- loading database
 USE ttc_sql_project;
--- previewing the 50 most recent records of each df
+-- previewing the 50 most recent records of each TTC delay df (see end for 4th df)
 SELECT *
 FROM bus_delay
 ORDER BY Date DESC
@@ -263,3 +263,18 @@ SET Line = REPLACE(Line, 'BD/YU', 'YU/BD')
     , Line = REPLACE(Line, 'YU/BDS', 'YU/BD')
     , Line = REPLACE(Line, 'YUS', 'YU')
     , Line = REPLACE(Line, 'B/D', 'BD');
+
+-- observing non TTC delay df; contains corresponding descriptions for subway_delay codes    
+SELECT *
+FROM delay_codes_subway;
+
+-- imported only 2 fields: subway code and code description
+-- Table Data Import Wizard did not recorgnize the field headers, therefor it was altered here
+ALTER TABLE `ttc_sql_project`.`delay_codes_subway` 
+CHANGE COLUMN `MyUnknownColumn_[1]` `Code` TEXT NULL DEFAULT NULL,
+CHANGE COLUMN `MyUnknownColumn_[2]` `code_description`  TEXT NULL DEFAULT NULL;
+
+-- deleting none code or description rows
+DELETE FROM delay_codes_subway
+WHERE `SUB RMENU CODE` = 'SUB RMENU CODE' OR
+	`CODE DESCRIPTION` = 'CODE DESCRIPTION';
