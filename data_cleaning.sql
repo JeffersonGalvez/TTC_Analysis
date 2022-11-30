@@ -274,7 +274,7 @@ ALTER TABLE `ttc_sql_project`.`delay_codes_subway`
 CHANGE COLUMN `MyUnknownColumn_[1]` `Code` TEXT NULL DEFAULT NULL,
 CHANGE COLUMN `MyUnknownColumn_[2]` `code_description`  TEXT NULL DEFAULT NULL;
 
--- deleting none code or description rows
+-- deleting none code or description values
 DELETE FROM delay_codes_subway
-WHERE `SUB RMENU CODE` = 'SUB RMENU CODE' OR
-	`CODE DESCRIPTION` = 'CODE DESCRIPTION';
+WHERE `Code` = 'SUB RMENU CODE' OR
+	`code_description` = 'CODE DESCRIPTION';
