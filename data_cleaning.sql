@@ -265,23 +265,27 @@ WHERE Line = 'BD/YU' OR
 	Line = 'YUS AND BD' OR
 	Line = 'YUS/BD'; -- 308 total
 
--- YU = Yonge-University, BD = Bloor-Danforth, both are individual TTC subway lines
--- indistinguishable which records are YU and BD specific 
--- decided to update all BD/YU and other similar YU/BD Line spelling variations to YU/BD
--- updating all Line spelling variations
+-- YU = Yonge-University, BD = Bloor-Danforth, both are individual TTC subway lines (1 and 2 respectively)
+-- indistinguishable which records are lines 1 and 2 specific
+-- decided to update all BD/YU and other similar YU/BD Line spelling variations to 1/2
+-- updating all Line spelling variations as well as other known lines into their numeric counterpart for consistency with TTC
 UPDATE subway_delay 
-SET Line = REPLACE(Line, 'BD/YU', 'YU/BD')
-	, Line = REPLACE(Line, 'Y/BD', 'YU/BD')
-    , Line = REPLACE(Line, 'YU / BD', 'YU/BD')
-    , Line = REPLACE(Line, 'YU & BD', 'YU/BD')
-    , Line = REPLACE(Line, 'YU/ BD', 'YU/BD')
-    , Line = REPLACE(Line, 'YU/BD LINE', 'YU/BD')
-    , Line = REPLACE(Line, 'YU/BD LINES', 'YU/BD')
-    , Line = REPLACE(Line, 'YUS AND BD', 'YU/BD')
-    , Line = REPLACE(Line, 'YUS/BD', 'YU/BD')
-    , Line = REPLACE(Line, 'YU/BDS', 'YU/BD')
-    , Line = REPLACE(Line, 'YUS', 'YU')
-    , Line = REPLACE(Line, 'B/D', 'BD');
+SET Line = REPLACE(Line, 'BD/YU', '1/2')
+	, Line = REPLACE(Line, 'Y/BD', '1/2')
+    , Line = REPLACE(Line, 'YU / BD', '1/2')
+    , Line = REPLACE(Line, 'YU & BD', '1/2')
+    , Line = REPLACE(Line, 'YU/ BD', '1/2')
+    , Line = REPLACE(Line, 'YU/BD LINE', '1/2')
+    , Line = REPLACE(Line, 'YU/BD LINES', '1/2')
+    , Line = REPLACE(Line, 'YUS AND BD', '1/2')
+    , Line = REPLACE(Line, 'YUS/BD', '1/2')
+    , Line = REPLACE(Line, 'YU/BDS', '1/2')
+    , Line = REPLACE(Line, 'YUS', '1')
+    , Line = REPLACE(Line, 'B/D', '2')
+    , Line = REPLACE(Line, 'BD', '2')
+	, Line = REPLACE(Line, 'YU', '1')
+    , Line = REPLACE(Line, 'SHP', '4')
+    , Line = REPLACE(Line, 'SRT', '3');
 
 -- observing non TTC delay table; contains corresponding descriptions for subway_delay codes    
 SELECT *
